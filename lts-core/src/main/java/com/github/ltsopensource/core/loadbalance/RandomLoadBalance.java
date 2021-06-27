@@ -12,6 +12,7 @@ public class RandomLoadBalance extends AbstractLoadBalance {
 
     @Override
     protected <S> S doSelect(List<S> shards, String seed) {
+        // 技巧：
         return shards.get(ThreadLocalRandom.current().nextInt(shards.size()));
     }
 }

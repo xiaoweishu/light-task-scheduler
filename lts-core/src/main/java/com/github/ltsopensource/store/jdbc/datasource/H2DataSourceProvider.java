@@ -19,7 +19,7 @@ public class H2DataSourceProvider implements DataSourceProvider {
     private static final Object lock = new Object();
 
     public DataSource getDataSource(Config config) {
-
+        // 细节，优雅 省去了 大量 static final
         String url = config.getParameter(ExtConfig.JDBC_URL);
         String username = config.getParameter(ExtConfig.JDBC_USERNAME);
         String password = config.getParameter(ExtConfig.JDBC_PASSWORD);
@@ -27,8 +27,10 @@ public class H2DataSourceProvider implements DataSourceProvider {
         String cachedKey = StringUtils.concat(url, username, password);
 
         DataSource dataSource = DATA_SOURCE_MAP.get(cachedKey);
+        // 细节，锁 ：双重检测
         if (dataSource == null) {
             try {
+                // 细节：始终保持同一个连接，所以也得共用同一把锁
                 synchronized (lock) {
                     dataSource = DATA_SOURCE_MAP.get(cachedKey);
                     if (dataSource != null) {

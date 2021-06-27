@@ -10,6 +10,9 @@ import java.util.Map;
 public class EventInfo {
 
     private String topic;
+    /**
+     * 疑惑：一开始不初始化，懒初始化
+     */
     private Map<String, Object> params;
 
     public EventInfo(String topic) {

@@ -1,0 +1,58 @@
+@startuml
+participant Actor
+Actor -> PicRunner : submitImageProcessDeal
+activate PicRunner
+PicRunner -> PicRunner : checkIsNeedSubmitImageProcessTask
+activate PicRunner
+PicRunner -> UserConfigService : getUserConfig
+activate UserConfigService
+UserConfigService -> UserConfigServiceImpl : getUserConfig
+activate UserConfigServiceImpl
+UserConfigServiceImpl --> UserConfigService
+deactivate UserConfigServiceImpl
+UserConfigService --> PicRunner
+deactivate UserConfigService
+PicRunner -> ModelUtils : convert
+activate ModelUtils
+ModelUtils -> ModelUtils : convert
+activate ModelUtils
+ModelUtils -> ModelUtils : getMatchedFields
+activate ModelUtils
+ModelUtils --> ModelUtils
+deactivate ModelUtils
+ModelUtils --> ModelUtils
+deactivate ModelUtils
+ModelUtils --> PicRunner
+deactivate ModelUtils
+PicRunner -> MaterialService : updateByPrimaryKey
+activate MaterialService
+MaterialService -> MaterialServiceImpl : updateByPrimaryKey
+activate MaterialServiceImpl
+MaterialServiceImpl -> IdptMaterialMapper : updateByPrimaryKey
+activate IdptMaterialMapper
+IdptMaterialMapper --> MaterialServiceImpl
+deactivate IdptMaterialMapper
+MaterialServiceImpl --> MaterialService
+deactivate MaterialServiceImpl
+MaterialService --> PicRunner
+deactivate MaterialService
+PicRunner --> PicRunner
+deactivate PicRunner
+PicRunner -> PicRunner : buildMsg
+activate PicRunner
+PicRunner --> PicRunner
+deactivate PicRunner
+PicRunner -> ImageProcessMsgTagEnum : values
+activate ImageProcessMsgTagEnum
+ImageProcessMsgTagEnum --> PicRunner
+deactivate ImageProcessMsgTagEnum
+PicRunner -> PicRunner : recordSubmittedImageTask
+activate PicRunner
+PicRunner -> PicRunner : buildTaskGroupKey
+activate PicRunner
+PicRunner --> PicRunner
+deactivate PicRunner
+PicRunner --> PicRunner
+deactivate PicRunner
+return
+@enduml

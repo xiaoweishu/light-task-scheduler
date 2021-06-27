@@ -82,7 +82,7 @@ public class DataBlock {
                 newFile = true;
                 FileUtils.createFileIfNotExist(file);
             }
-
+            // 新奇
             this.fileChannel = FileUtils.newFileChannel(this.file, "rw");
 
             if (newFile) {

@@ -7,6 +7,7 @@ import com.github.ltsopensource.kv.serializer.StoreSerializer;
 import java.io.File;
 
 /**
+ * 设计模式：
  * @author Robert HG (254963746@qq.com) on 12/15/15.
  */
 public class DBBuilder<K, V> {
@@ -18,6 +19,10 @@ public class DBBuilder<K, V> {
         storeConfig = new StoreConfig();
     }
 
+    /**
+     * 思想，设计模式
+     * @return
+     */
     public DB<K, V> create() {
         if (serializer == null) {
             this.serializer = new JsonStoreSerializer();

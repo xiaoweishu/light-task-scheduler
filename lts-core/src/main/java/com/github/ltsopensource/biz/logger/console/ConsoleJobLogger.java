@@ -31,6 +31,7 @@ public class ConsoleJobLogger implements JobLogger {
 
     @Override
     public PaginationRsp<JobLogPo> search(JobLoggerRequest request) {
+        // 技巧，借鉴 表示方法不支持特定的操作
         throw new UnsupportedOperationException("Console logger dose not support this operation!");
     }
 

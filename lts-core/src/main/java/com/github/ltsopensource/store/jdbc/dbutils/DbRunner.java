@@ -48,7 +48,7 @@ public class DbRunner {
             this.rethrow(e, sql, (Object[]) params);
         } finally {
             close(stmt);
-            if (closeConn) {
+            if (closeConn){
                 close(conn);
             }
         }

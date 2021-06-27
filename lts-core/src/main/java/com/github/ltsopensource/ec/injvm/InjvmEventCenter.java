@@ -58,6 +58,7 @@ public class InjvmEventCenter implements EventCenter {
         Set<EventSubscriber> subscribers = ecMap.get(eventInfo.getTopic());
         if (subscribers != null) {
             for (EventSubscriber subscriber : subscribers) {
+                // 疑惑：这里什么作用？
                 eventInfo.setTopic(eventInfo.getTopic());
                 try {
                     subscriber.getObserver().onObserved(eventInfo);

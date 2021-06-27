@@ -18,6 +18,7 @@ public class MasterSalveLoadBalance extends AbstractLoadBalance {
     protected <S> S doSelect(List<S> shards, String seed) {
 
         if (shards.get(0) instanceof Node) {
+            // 风格：
             Collections.sort(shards, new Comparator<S>() {
                 @Override
                 public int compare(S left, S right) {

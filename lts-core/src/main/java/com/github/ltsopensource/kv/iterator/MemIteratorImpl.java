@@ -31,6 +31,10 @@ public class MemIteratorImpl<K, V> implements DBIterator<Entry<K, V>> {
         return iterator.hasNext();
     }
 
+    /**
+     * 新奇
+     * @return
+     */
     @Override
     public Entry<K, V> next() {
         Map.Entry<K, IndexItem<K>> entry = iterator.next();

@@ -11,11 +11,18 @@ import java.io.IOException;
 public class Test {
 
     public static void main(String[] args) throws IOException {
-        TestProperties properties = PropertiesConfigurationFactory.createPropertiesConfiguration(TestProperties.class);
-        System.out.println(JSON.toJSONString(properties));
+//        TestProperties properties = PropertiesConfigurationFactory.createPropertiesConfiguration(TestProperties.class);
+//        System.out.println(JSON.toJSONString(properties));
 
 //        JSONFactory.setJSONAdapter("ltsjson");
 //        System.out.println(JSON.parse("2321321", Integer.class));
+        f();
     }
 
+    public static void f() {
+        String[] a = new String[2];
+        Object[] b = a;
+//        a[0] = "hi";
+        b[1] = Integer.valueOf(42);
+    }
 }

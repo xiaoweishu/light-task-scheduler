@@ -27,7 +27,7 @@ public class MysqlDataSourceProvider implements DataSourceProvider {
     private static final Object lock = new Object();
 
     public DataSource getDataSource(Config config) {
-
+        // 细节，借鉴  不能将共用的配置上浮到DataSourceProvider
         String url = config.getParameter(ExtConfig.JDBC_URL);
         String username = config.getParameter(ExtConfig.JDBC_USERNAME);
         String password = config.getParameter(ExtConfig.JDBC_PASSWORD);
@@ -40,10 +40,11 @@ public class MysqlDataSourceProvider implements DataSourceProvider {
         }
 
         String cachedKey = StringUtils.concat(url, username, password);
-
+        // 细节，不加锁查询一次，接着加锁
         DataSource dataSource = DATA_SOURCE_MAP.get(cachedKey);
         if (dataSource == null) {
             try {
+                // 易出错：不能保证复合操作，所以需要对 map 查询和放入进行加锁
                 synchronized (lock) {
                     dataSource = DATA_SOURCE_MAP.get(cachedKey);
                     if (dataSource != null) {

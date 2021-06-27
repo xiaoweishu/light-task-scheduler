@@ -27,6 +27,7 @@ public class DataCompactor<K, V> {
     private AtomicBoolean running = new AtomicBoolean(false);
 
     public void init() {
+        // 线程
         future = this.executorService.scheduleWithFixedDelay(
                 new Runnable() {
                     @Override

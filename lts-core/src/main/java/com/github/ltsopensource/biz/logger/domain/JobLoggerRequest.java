@@ -12,7 +12,7 @@ public class JobLoggerRequest extends PaginationReq {
 
     private String realTaskId;
     private String taskId;
-
+    // 关键字段
     private String taskTrackerNodeGroup;
 
     private String logType;

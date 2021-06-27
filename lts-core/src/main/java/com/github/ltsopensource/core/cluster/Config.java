@@ -36,7 +36,7 @@ public class Config implements Serializable {
     private String dataPath;
     // 集群名字
     private String clusterName;
-
+    // 细节
     private volatile transient Map<String, Number> numbers;
 
     private final Map<String, String> parameters = new HashMap<String, String>();
